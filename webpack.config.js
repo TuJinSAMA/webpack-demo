@@ -22,10 +22,19 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: [
           (process.env.NODE_ENV === 'production' ? MiniCSSExtractPlugin.loader : 'style-loader'),
-          'css-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              // 在处理到使用 @import 语法时 先用 css-loader 的前 n 个 loader 处理
+              // n = importLoaders
+              importLoaders: 1
+            }
+          },
+          'postcss-loader',
+          'less-loader'
         ]
       }
     ]

@@ -1,4 +1,4 @@
-import './style/index.css'
+import './style/index.less'
 const greet = (name: string) => {
   console.log(`hello ${name}!`);
 }
